@@ -1,0 +1,153 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-12-12, 15:12:09
+    Author     : Lixin
+*/
+//@mixin
+//1. inline-block
+/*label, input{ display: inline-block; vertical-align: middle; *display: inline;*zoom:1; *vertical-align: auto;}*/
+$inline-block-alignment: middle !default;
+@mixin inline-block($alignment: $inline-block-alignment){
+    display: inline-block;
+    @if $alignment and $alignment != none{
+        vertical-align: $alignment;
+    }
+    @if $legacy-support-for-ie{
+        *vertical-align: auto;
+        *zoom: 1;
+        *display: inline;
+    }
+}
+$legacy-support-for-ie: ture !default;
+label, input{ @include inline-block($alignment: top);}
+
+
+@mixin horizontal-center{
+    margin-left: auto; margin-right: auto;
+}
+%horizontal-center{
+    @include horizontal-center;
+}
+$width: 960px !default;
+.contauner{ width: $width; @extend %horizontal-center;}
+
+@mixin float($side: left){
+    float: unquote($side);
+    @if $legacy-support-for-ie{
+        _display: inline;
+    }
+}
+@mixin pull-left{
+    @include float(left);
+}
+
+%pull-left{
+    @include float(left);
+}
+@mixin pull-right{
+    @include float(right);
+}
+
+%pull-right {
+    @include float(right);
+}
+
+.coll{
+    @extend %pull-left;
+}
+.aside{
+    @include pull-left;
+}
+
+@mixin reset-float($display:block){
+    float: none;
+    display: $display;
+}
+
+@mixin clearfix{
+    @if $legacy-support-for-ie{
+        *zoom: 1;
+    }
+    &:before,&:after{
+        content: '';
+        display: table;
+    }
+    &:after{
+        clear: both;
+        overflow: hidden;
+    }
+}
+%clearfix{
+    @include clearfix;
+}
+.container{
+    @extend %clearfix;
+}
+
+@mixin ir{
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    @if $legacy-support-for-ie{
+        *text-indent: -150%;
+    }
+    &:before{
+        content: '';
+        display: block;
+        width: 0;
+        height: 150%;
+    }
+}
+%ir{
+    @include ir;
+}
+#logo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    @include ir;
+}
+
+@mixin visuallyhidden {
+    @if $legacy-support-for-ie{
+        clip: rect(0,0,0,0);
+    }
+    border: 0;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    &.focusable:active,
+        &.focusable:focus{
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+}
+
+@mixin singleline-ellipsis($substract:0){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100% -$substract;
+}
+%singleline-ellipsis {
+    @include singleline-ellipsis;
+}
+
+@mixin opacity($opacity: 50){
+    opacity: $opacity / 100;
+    @if $filter{
+        filter: alpha(opacity=$opacity);
+    }
+}

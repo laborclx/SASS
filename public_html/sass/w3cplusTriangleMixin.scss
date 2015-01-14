@@ -1,0 +1,111 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-5, 13:57:32
+    Author     : Lixin
+*/
+@mixin content{
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+}
+%content{
+    @include content;
+}
+@mixin triangle($size:30px,$color:#000,$bgColor:#111,$direction:up,$inner:false,$transparent:false){
+    @extend %content;
+    position: absolute;
+    @if ($direction == up) or ($direction == right) or ($direction == down) or ($direction == left) {
+    border: ($size / 2) solid transparent;
+     @if $direction == up { 
+         @if $inner {  
+            border-color: $bgColor transparent transparent transparent; 
+          border-bottom-width: 0;
+          top: 0;
+        } @else {
+          border-color:  transparent transparent $color transparent;  
+          border-top-width: 0;
+          bottom: 100%;
+        }         
+        @if $transparent {
+          border-color: transparent $color $color $color;
+          border-top-width: $size / 2;
+          border-bottom-width: 0;
+        } 
+    }
+      @else if $direction == right {
+        @if $inner {  
+            border-color:  transparent $bgColor transparent transparent; 
+            border-left-width: 0;
+            right: 0;
+        } @else {
+            border-color:  transparent transparent transparent $color;  
+            border-right-width: 0;
+            left: 100%;
+        }
+        @if $transparent {
+           border-color:  $color transparent $color $color;
+           border-right-width: $size / 2;
+           border-left-width: 0;
+        }  
+      }
+      @else if $direction == down {
+         @if $inner {  
+            border-color:  transparent  transparent $bgColor transparent; 
+            border-top-width: 0;
+            bottom: 0;
+         } @else {
+            border-color: $color transparent transparent transparent;  
+            border-bottom-width: 0;
+            top: 100%;
+         }
+         @if $transparent {
+            border-color:  $color $color transparent $color;
+            border-bottom-width: $size / 2;
+            border-top-width: 0;
+         }  
+      }
+      @else if $direction == left {
+         @if $inner {  
+            border-color:  transparent transparent transparent $bgColor; 
+            border-right-width: 0;
+            left: 0;
+         } @else {
+            border-color:  transparent $color transparent transparent;  
+            border-left-width: 0;
+            right: 100%;
+         }
+                 @if $transparent {
+            border-color:  $color $color $color transparent;
+            border-left-width: $size / 2;
+            border-right-width: 0;
+         }  
+       }
+     }   
+    @else if ($direction == up-right) or ($direction == up-left) {
+        border-top: $size solid $color;
+        top: 100%;
+        @if $direction == up-right {
+            border-left:  $size solid transparent;
+            left: 0;
+            } @else if $direction == up-left {
+                border-right: $size solid transparent;
+                right:0;
+            }
+        }
+        @else if ($direction == down-right) or ($direction == down-left) {
+            border-bottom: $size solid $color;
+            bottom: 100%;
+            @if $direction == down-right {
+                border-left:  $size solid transparent;
+                left: 0;
+            } @else if $direction == down-left {
+                border-right: $size solid transparent;
+                right: 0;
+            }
+        }
+}

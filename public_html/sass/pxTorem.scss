@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-7, 11:33:13
+    Author     : Lixin
+*/
+
+$browser-default-font-size: 16px !default;
+
+@function pxTorem($px){
+    @return $px / $browser-default-font-size * 1rem;
+}
+
+@function strip-units($number){
+    @return $number / ($number * 0 + 1);
+}
+
+@mixin remCalc($property, $values...){
+    $max: length($values);
+    $pxValues: '';
+    $remValues: '';
+    
+    @for $i from 1 through $max{
+        $value: strip-units(nth($values, $i));
+        $browser-default-font-size: strip-units($browser-default-font-size);
+        $pxValues: #{$pxValues + $value * $browser-default-font-size}px;
+        
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+        }
+    }
+    @for $i from 1 through $max {
+        $value: strip-units(nth($values, $i));
+        $remValues: #{$remValues + $value}rem;
+
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    }
+    #{$property}: $pxValues; 
+    #{$property}: $remValues; 
+}
+
+.wrapper {
+    @include remCalc(width,45);
+    @include remCalc(margin,1,.5,2,3);
+}

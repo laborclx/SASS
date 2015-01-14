@@ -1,0 +1,118 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-12-18, 12:37:48
+    Author     : Lixin
+*/
+%boxsize{
+    height: 0;
+    width: 0;
+}
+%border{
+    border-color: transparent;
+    border-style: solid;
+}
+@mixin triangle($size, $color, $direction){
+    @extend %boxsize;
+    @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left){
+        @extend %border;
+        border-width: $size / 2;
+        @if $direction == up {
+            border-bottom-color: $color;
+        }@else if $direction == right{
+            border-left-color: $color;
+        }@else if $direction == down{
+            border-top-color: $color;
+        }@else if $direction == left{
+            border-right-color: $color;
+        }
+    }@else if ($direction == up-right) or ($direction == up-left){
+        border-top: $size solid $color;
+        @if $direction == up-right{
+            border-left: $size solid transparent;
+        }@else if $direction == up-left{
+            border-right: $size solid transparent;
+        }
+    }@else if ($direction == down-right) or ($direction == down-left){ 
+        border-bottom: $size solid $color;
+        @if $direction == down-right{
+            border-left: $size solid transparent;
+        }@else if $direction == down-left{
+            border-right: $size solid transparent;
+        }
+    }
+}
+
+$bgColor: #0186ba;
+$color: #fff;
+$font-size: 16px;
+$unit: 4px;
+$borderColor: #223678;
+
+%boxStyle{
+    display: inline-block;
+    margin: $unit * 5;
+    padding: $unit * 2;
+    background: $bgColor;
+    color: $color;
+    position: relative;
+}
+%content{
+    content: '';
+    display: block;
+    position: absolute;
+}
+
+.tooltip{
+    @extend %boxStyle;
+    &:before{
+        @include triangle(($unit * 3), $bgColor, up);
+        @extend %content;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -($unit * 3) / 2;
+    }
+}
+
+.tooltip-border {
+  @extend %boxStyle;
+  border: 2px solid $borderColor;
+  &:before,
+  &:after{
+    @extend %content;
+  }
+  &:before {
+    @include triangle(12px,$bgColor,right);
+    left: 100%;
+    z-index: 2;
+    top: 10px;
+  }
+  &:after {
+    @include triangle(16px,$borderColor,right);
+    left: 100%;
+    top: 8px;
+    z-index: 1;
+  }
+}
+
+.ribbons {
+  @extend %boxStyle;
+  padding-right: $unit * 6;
+  &:before,
+  &:after {
+    @extend %content;
+  }
+  &:after {
+    @include triangle(32px,#fff,left);
+    right: 0;
+    top: 0;
+  }
+  &:before {
+    @include triangle(10px, darken($bgColor, 9%), up-right);
+    left: 0;
+    top: 100%
+  }
+}

@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-12-12, 15:12:09
+    Author     : Lixin
+*/
+/*label, input{ display: inline-block; vertical-align: middle; *display: inline;*zoom:1; *vertical-align: auto;}*/
+label, input {
+  display: inline-block;
+  vertical-align: top;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline; }
+
+.contauner {
+  margin-left: auto;
+  margin-right: auto; }
+
+.contauner {
+  width: 960px; }
+
+.coll {
+  float: left;
+  _display: inline; }
+
+.aside {
+  float: left;
+  _display: inline; }
+
+.container {
+  *zoom: 1; }
+  .container:before, .container:after {
+    content: '';
+    display: table; }
+  .container:after {
+    clear: both;
+    overflow: hidden; }
+
+#logo {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  *text-indent: -150%; }
+  #logo:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 150%; }
+
+/*# sourceMappingURL=index_2.css.map */

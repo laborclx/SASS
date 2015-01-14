@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-5, 12:54:17
+    Author     : Lixin
+*/
+/*
+Bourbon Triangle Mixin
+*/
+.tooltip, .tooltip-border, .ribbons {
+  display: inline-block;
+  margin: 20px;
+  padding: 8px;
+  background: #0186ba;
+  color: #fff;
+  position: relative; }
+
+.tooltip:before, .tooltip-border:before, .tooltip-border:after, .ribbons:before, .ribbons:after {
+  content: '';
+  display: block;
+  position: absolute; }
+
+.tooltip:before {
+  height: 0;
+  width: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 6px;
+  border-bottom-color: #0186ba;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -6px; }
+
+.tooltip-border {
+  border: 2px solid #223678; }
+  .tooltip-border:before {
+    height: 0;
+    width: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 6px;
+    border-left-color: #0186ba;
+    left: 100%;
+    z-index: 2;
+    top: 10px; }
+  .tooltip-border:after {
+    height: 0;
+    width: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 8px;
+    border-left-color: #223678;
+    left: 100%;
+    z-index: 1;
+    top: 8px; }
+
+.ribbons {
+  padding-right: 24px; }
+  .ribbons:after {
+    height: 0;
+    width: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 16px;
+    border-right-color: #fff;
+    right: 0;
+    top: 0; }
+  .ribbons:before {
+    height: 0;
+    width: 0;
+    border-top: 10px solid #01658c;
+    border-left: 10px solid transparent;
+    left: 0;
+    top: 100%; }
+
+/*# sourceMappingURL=bourbonTriangleMixin.css.map */

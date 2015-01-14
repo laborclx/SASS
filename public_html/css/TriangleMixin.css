@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-12-18, 12:37:48
+    Author     : Lixin
+*/
+.tooltip:before, .tooltip-border:before, .tooltip-border:after, .ribbons:after, .ribbons:before {
+  height: 0;
+  width: 0; }
+
+.tooltip:before, .tooltip-border:before, .tooltip-border:after, .ribbons:after {
+  border-color: transparent;
+  border-style: solid; }
+
+.tooltip, .tooltip-border, .ribbons {
+  display: inline-block;
+  margin: 20px;
+  padding: 8px;
+  background: #0186ba;
+  color: #fff;
+  position: relative; }
+
+.tooltip:before, .tooltip-border:before, .tooltip-border:after, .ribbons:before, .ribbons:after {
+  content: '';
+  display: block;
+  position: absolute; }
+
+.tooltip:before {
+  border-width: 6px;
+  border-bottom-color: #0186ba;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -6px; }
+
+.tooltip-border {
+  border: 2px solid #223678; }
+  .tooltip-border:before {
+    border-width: 6px;
+    border-left-color: #0186ba;
+    left: 100%;
+    z-index: 2;
+    top: 10px; }
+  .tooltip-border:after {
+    border-width: 8px;
+    border-left-color: #223678;
+    left: 100%;
+    top: 8px;
+    z-index: 1; }
+
+.ribbons {
+  padding-right: 24px; }
+  .ribbons:after {
+    border-width: 16px;
+    border-right-color: #fff;
+    right: 0;
+    top: 0; }
+  .ribbons:before {
+    border-top: 10px solid #01658c;
+    border-left: 10px solid transparent;
+    left: 0;
+    top: 100%; }
+
+/*# sourceMappingURL=TriangleMixin.css.map */

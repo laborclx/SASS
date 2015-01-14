@@ -1,0 +1,112 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-5, 12:54:17
+    Author     : Lixin
+*/
+/*
+Bourbon Triangle Mixin
+*/
+@mixin triangle($size, $color, $direction){
+    height: 0;
+    width: 0;
+    @if ($direction == up) or ($direction == down) or ($direction == left) or ($direction == right){
+        border-color: transparent;
+        border-style: solid;
+        border-width: $size / 2;
+        @if ($direction == up){
+            border-bottom-color: $color;
+        }@else if ($direction == right){
+            border-left-color: $color;
+        }@else if ($direction == down){
+            border-top-color: $color;
+        }@else if ($direction == left) {
+            border-right-color:  $color;
+        }
+    }@else if ($direction == up-right) or ($direction == up-left) {
+        border-top: $size solid $color;
+        @if $direction == up-right {
+            border-left:  $size solid transparent;
+        } @else if $direction == up-left {
+            border-right: $size solid transparent;
+        }
+    }@else if ($direction == down-right) or ($direction == down-left) {
+        border-bottom: $size solid $color;
+        @if $direction == down-right {
+            border-left:  $size solid transparent;
+        } @else if $direction == down-left {
+            border-right: $size solid transparent;
+        }
+    }
+}
+
+$bgcolor: #0186ba;
+$color: #fff;
+$font-size: 16px;
+$unit: 4px;
+$bordercolor: #223678;
+
+%boxStyle{
+    display: inline-block;
+    margin: $unit * 5;
+    padding: $unit * 2;
+    background: $bgcolor;
+    color: $color;
+    position: relative;
+}
+%content{
+    content: '';
+    display: block;
+    position: absolute;
+}
+.tooltip{
+    @extend %boxStyle;
+    &:before{
+        @include triangle(($unit * 3), $bgcolor, up);
+        @extend %content;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -($unit * 3) / 2;
+    }
+}
+.tooltip-border{
+    @extend %boxStyle;
+    border: 2px solid $bordercolor;
+    &:before,
+        &:after{
+        @extend %content;
+    }
+    &:before{
+        @include triangle(12px,$bgcolor,right);
+        left: 100%;
+        z-index: 2;
+        top: 10px;
+    }
+    &:after{
+        @include triangle(16px,$bordercolor,right);
+        left: 100%;
+        z-index: 1;
+        top: 8px;
+    }
+}
+.ribbons{
+    @extend %boxStyle;
+    padding-right: $unit * 6;
+    &:before,
+    &:after {
+        @extend %content;
+    }
+    &:after {
+        @include triangle(32px,#fff,left);
+        right: 0;
+        top: 0;
+    }
+    &:before {
+        @include triangle(10px, darken($bgcolor, 9%), up-right);
+        left: 0;
+        top: 100%
+    }
+}
