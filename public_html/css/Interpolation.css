@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-15, 14:31:49
+    Author     : Lixin
+*/
+.login-box {
+  margin-top: 14px;
+  padding-top: 14px; }
+
+.header-text-small {
+  font-size: 12px; }
+
+.footer, .header, .login-box {
+  malign: 0; }
+
+.footer, .header, .login-box {
+  padding: 0; }
+
+.footer, .header, .login-box {
+  width: 100%;
+  height: 100%; }
+
+.module {
+  text-align: center; }
+  .module.module-something {
+    font-size: 12px; }
+
+.block {
+  /* Base stuff */ }
+  .block__child {
+    /* Sub-element of block */ }
+  .block--modifier {
+    /* Variation of block */ }
+
+@media (min-width: 30em) {
+  .container {
+    color: red; } }
+.container .ie {
+  color: red; }
+
+@media (min-width: 30em) {
+  .container {
+    color: red; } }
+.ie .container {
+  color: red; }
+
+.bar {
+  color: gray; }
+
+.bar .foo {
+  color: gray; }
+
+.bar {
+  color: gray; }
+
+/*# sourceMappingURL=Interpolation.css.map */

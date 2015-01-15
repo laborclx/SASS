@@ -1,0 +1,86 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-14, 18:15:02
+    Author     : Lixin
+*/
+
+@mixin semi-transparent-color($colors,$background,$opa){
+    $color: rgba($colors, $opa);
+    $percent: alpha($color) * 100%;
+    $opaque: opacify($color,1);
+    $solid-color: mix($opaque,$background,$percent);
+    background-color: $solid-color;
+    background-color: $color;
+}
+
+.bg{
+    @include semi-transparent-color(#000, red, 0.5);
+}
+
+@mixin semi-transparent-attr-colors($attribute,$colors,$background,$opa){
+    $color: rgba($colors, $opa);
+    $percent: alpha($color) * 100%;
+    $opaque: opacify($color,1);
+    $solid-color: mix($opaque,$background,$percent);
+    #{$attribute}: $solid-color;
+    #{$attribute}: $color;
+}
+
+.button {
+    @include semi-transparent-attr-colors("background-color",black,white,.5);
+    @include semi-transparent-attr-colors("color",white,#393,.8);
+    @include semi-transparent-attr-colors("border-color",black,gray,.7);
+}
+
+@mixin semi-transparent-colors($attribute,$color,$background){
+    $percent: alpha($color) * 100%;
+    $opaque: opacify($color,1);
+    $solid-color: mix($opaque,$background,$percent);
+    @if ($percent < 100%){
+        #{$attribute}: $solid-color;
+    }
+    #{$attribute}: $color;
+}
+@mixin color-button($text,$color,$background:white){
+    @include semi-transparent-colors("border-color",rgba(black, .7),$background);
+    @include semi-transparent-colors("background-color",$color,$background);
+    @include semi-transparent-colors("color",$text,$background);
+    &:hover,
+    &:focus {
+        @include semi-transparent-colors("background-color",transparentize($color,.2),$background);
+        @include semi-transparent-colors("color",opacify($text,1),$background);
+    }   
+    &:active {
+        @include semi-transparent-colors("background-color",opacify($color,1),$background);
+        box-shadow: none;
+    }
+}
+%button {
+    border: 1px solid;
+    box-shadow: inset 0 1px 0 rgba(white,.2);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+    font: {
+        size: 14px;
+        family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    }
+    padding: .4em 1em .5em;
+    cursor: pointer;
+}
+
+.panel {
+  width: 220px;
+  padding: 50px;
+  text-align: center;
+  margin: 15px;
+  background: gray;
+  box-sizing: border-box;
+  float: left;
+  button{
+    @extend %button;
+    @include color-button(rgba(white, 0.8), rgba(black, 0.5), gray); 
+  }
+}
