@@ -1,0 +1,108 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-16, 16:46:48
+    Author     : Lixin
+*/
+
+@mixin font-face($font-family,$file-path,$font-weight:normal,$font-style:normal,$asset-pipeline: false){
+    @font-face {
+        font: {
+            family: $font-family;
+            weight: $font-weight;
+            style: $font-style;
+        }
+        
+        @if $asset-pipeline == true {
+            src: font-url("#{$file-path}.eot");
+            src: font-url("#{$file-path}.eot?#iefix") format("embedded-opentype"),
+                 font-url("#{$file-path}.woff") format("woff"),
+                 font-url("#{$file-path}.ttf") format("truetype"),
+                 font-url("#{$file-path}.svg##{$font-family}") format("svg");
+        }
+        @else {
+            src: url("#{$file-path}.eot");
+            src: url("#{$file-path}.eot?#iefix") format("embedded-opentype"),
+                 url("#{$file-path}.woff") format("woff"),
+                 url("#{$file-path}.ttf") format("truetype"),
+                 url("#{$file-path}.svg##{$font-family}") format("svg");    
+        }
+    }
+}
+
+@include font-face("Icons","../fonts/icomoon");
+
+$icons: (
+    "icon-home" "\e900",
+    "icon-video-camera" "\e914",
+    "icon-file-music" "\e928",
+    "icon-coin-euro" "\e93c",
+    "icon-alarm" "\e950",
+    "icon-database" "\e964"
+);
+
+@function match($haystack, $needle){
+    @each $item in $haystack {
+        $index:index($item, $needle);
+        @if $index{
+            $return: if($index == 1, 2, $index);
+            @return nth($item, $return);
+        }
+    }
+    @return false;
+}
+
+@mixin icon($position:"before",$styles:true,$icon:false){
+    &:#{$position} {
+        @if $icon {
+            content: match($icons, $icon);
+        }
+        @if $styles {
+            font: {
+                family: "Icons";
+                style: normal;
+                weight: normal;
+                variant: normal;
+            }
+            text-transform: none;
+            speak: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+        }
+        @content;
+    }
+}
+
+$namespace: "icon" !default;
+
+span[class^=#{$namespace}]{
+    @include icon;
+}
+@each $icon in $icons {
+    $name: nth($icon, 1);
+    .#{$name}{
+        @include icon("before",false,$name);
+    }
+}
+
+/*span[class^="icon"]{
+    @include icon;
+}
+
+.icon-battery-low {
+    @include icon("before",false,"icon-home"){
+        font-size: 50px;
+    };
+}
+.icon-battery {
+    @include icon("before",false,"icon-video-camera");
+}
+.icon-battery-full {
+    @include icon("before",false,"icon-file-music");
+}
+.icon-battery-charging {
+    @include icon("before",false,"icon-coin-euro");
+}*/

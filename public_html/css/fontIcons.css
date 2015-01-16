@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-1-16, 16:46:48
+    Author     : Lixin
+*/
+@font-face {
+  font-family: "Icons";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/icomoon.eot");
+  src: url("../fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("../fonts/icomoon.woff") format("woff"), url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.svg#Icons") format("svg"); }
+span[class^=icon]:before {
+  font-family: "Icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased; }
+
+.icon-home:before {
+  content: ""; }
+
+.icon-video-camera:before {
+  content: ""; }
+
+.icon-file-music:before {
+  content: ""; }
+
+.icon-coin-euro:before {
+  content: ""; }
+
+.icon-alarm:before {
+  content: ""; }
+
+.icon-database:before {
+  content: ""; }
+
+/*span[class^="icon"]{
+    @include icon;
+}
+
+.icon-battery-low {
+    @include icon("before",false,"icon-home"){
+        font-size: 50px;
+    };
+}
+.icon-battery {
+    @include icon("before",false,"icon-video-camera");
+}
+.icon-battery-full {
+    @include icon("before",false,"icon-file-music");
+}
+.icon-battery-charging {
+    @include icon("before",false,"icon-coin-euro");
+}*/
+
+/*# sourceMappingURL=fontIcons.css.map */
